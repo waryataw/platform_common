@@ -10,8 +10,8 @@ import (
 
 // AuthClient Client for GRPC connect to Auth service.
 type AuthClient struct {
-	authServiceClient authv1.AuthServiceClient
-	conn              *grpc.ClientConn
+	AuthServiceClient authv1.AuthServiceClient
+	Conn              *grpc.ClientConn
 }
 
 // New Auth GRPC Client constructor.
@@ -25,8 +25,8 @@ func New(config GRPCClientConfig) (*AuthClient, error) {
 	}
 
 	client := &AuthClient{
-		authServiceClient: authv1.NewAuthServiceClient(conn),
-		conn:              conn,
+		AuthServiceClient: authv1.NewAuthServiceClient(conn),
+		Conn:              conn,
 	}
 
 	return client, nil
