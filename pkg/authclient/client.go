@@ -15,9 +15,9 @@ type AuthClient struct {
 }
 
 // New Auth GRPC Client constructor.
-func New(config GRPCClientConfig) (*AuthClient, error) {
+func New(address string) (*AuthClient, error) {
 	conn, err := grpc.NewClient(
-		config.Address(),
+		address,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 	if err != nil {
