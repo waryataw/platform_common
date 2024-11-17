@@ -1,21 +1,21 @@
-package authclient
+package userclient
 
 import (
 	"fmt"
 
-	"github.com/waryataw/auth/pkg/authv1"
+	"github.com/waryataw/auth/pkg/userv1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-// AuthClient Client for GRPC connect to Auth service.
-type AuthClient struct {
-	AuthServiceClient authv1.AuthServiceClient
+// UserClient Client for GRPC connect to Auth service.
+type UserClient struct {
+	UserServiceClient userv1.UserServiceClient
 	Conn              *grpc.ClientConn
 }
 
-// New Auth GRPC Client constructor.
-func New(address string) (*AuthClient, error) {
+// New User GRPC Client constructor.
+func New(address string) (*UserClient, error) {
 	conn, err := grpc.NewClient(
 		address,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
@@ -24,8 +24,8 @@ func New(address string) (*AuthClient, error) {
 		return nil, fmt.Errorf("failed to connect to Auth server: %w", err)
 	}
 
-	client := &AuthClient{
-		AuthServiceClient: authv1.NewAuthServiceClient(conn),
+	client := &UserClient{
+		UserServiceClient: userv1.NewUserServiceClient(conn),
 		Conn:              conn,
 	}
 
